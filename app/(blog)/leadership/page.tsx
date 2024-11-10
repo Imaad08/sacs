@@ -73,10 +73,10 @@ const Leadership = () => {
   return (
     <div className="bg-cream min-h-screen p-4">
   <section className="hero bg-cream py-20">
-    <div className="container mx-auto text-center px-4">
-      <h1 className="text-5xl font-bold text-gray-800">Leadership</h1>
-    </div>
-  </section>
+          <div className="container mx-auto text-center">
+            <h1 className="text-5xl font-bold text-gray-800">Leadership</h1>
+          </div>
+        </section>
 
   <h1 className="text-3xl font-bold text-gray-800 text-center">Presidents</h1>
   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 mr-4 lg:grid-cols-3 gap-4">
