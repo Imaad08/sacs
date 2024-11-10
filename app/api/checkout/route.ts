@@ -24,7 +24,7 @@ export async function POST(req: NextRequest) {
         },
       ],
       mode: 'payment',
-      success_url: `${req.headers.get('origin')}/tickets?success=true`,
+      success_url: `${req.headers.get('origin')}/receipt?session_id={CHECKOUT_SESSION_ID}`, 
       cancel_url: `${req.headers.get('origin')}/tickets?canceled=true`,
     });
 
