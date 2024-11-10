@@ -1,6 +1,8 @@
 'use client'
 import React from 'react';
 import { loadStripe } from '@stripe/stripe-js';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY || '');
 
@@ -8,20 +10,34 @@ export default function PreviewPage() {
   React.useEffect(() => {
     const query = new URLSearchParams(window.location.search);
     if (query.get('success')) {
-      console.log('Order placed! You will receive an email confirmation.');
+      toast.success('Payment successful. Show up to the event and give your name', {
+        position: 'bottom-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
     }
     if (query.get('canceled')) {
-      console.log('Order canceled -- continue to shop around and checkout when you’re ready.');
+      toast.error('Payment canceled', {
+        position: 'bottom-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
     }
   }, []);
 
   return (
     <div style={{ backgroundColor: '#f5f5dc', padding: '20px', textAlign: 'center', minHeight: '100vh' }}>
-        <section className="hero bg-cream py-20">
-          <div className="container mx-auto text-center">
-            <h1 className="text-5xl font-bold text-gray-800">Tickets</h1>
-          </div>
-        </section>
+      <section className="hero bg-cream py-20">
+        <div className="container mx-auto text-center">
+          <h1 className="text-5xl font-bold text-gray-800">Tickets</h1>
+        </div>
+      </section>
       <h2>Get your tickets now to experience our exciting events!</h2>
       <p>Each ticket grants you access to a unique event filled with activities, entertainment, and more.</p>
       
@@ -44,8 +60,9 @@ export default function PreviewPage() {
             </button>
           </form>
         </div>
-
       </div>
+
+      <ToastContainer />
 
       <style jsx>{`
         .event-box {

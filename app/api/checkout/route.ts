@@ -24,8 +24,8 @@ export async function POST(req: NextRequest) {
         },
       ],
       mode: 'payment',
-      success_url: `${req.headers.get('origin')}/?success=true`,
-      cancel_url: `${req.headers.get('origin')}/?canceled=true`,
+      success_url: `${req.headers.get('origin')}/tickets?success=true`,
+      cancel_url: `${req.headers.get('origin')}/tickets?canceled=true`,
     });
 
     return NextResponse.redirect(session.url, { status: 303 });
