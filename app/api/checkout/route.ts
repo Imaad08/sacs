@@ -12,6 +12,17 @@ export async function POST(req: NextRequest) {
           quantity: 1,
         },
       ],
+      custom_fields: [
+        {
+          key: 'name',
+          label: {
+            type: 'custom',
+            custom: 'Your Name',
+          },
+          type: 'text',
+          optional: false,
+        },
+      ],
       mode: 'payment',
       success_url: `${req.headers.get('origin')}/?success=true`,
       cancel_url: `${req.headers.get('origin')}/?canceled=true`,
