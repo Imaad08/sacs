@@ -52,7 +52,7 @@ export default {
     				'4': 'hsl(var(--chart-4))',
     				'5': 'hsl(var(--chart-5))'
     			},
-    			cream: 'hsl(60, 100%, 90%)',
+    			cream: 'hsl(60, 56%, 91%)',
     			gold: 'hsl(42, 89%, 36%)'
     		},
     		borderRadius: {
