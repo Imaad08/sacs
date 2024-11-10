@@ -41,7 +41,7 @@ export default function Navbar() {
         {['About', 'Leadership', 'Events', 'Dances', 'Tickets', 'Contact'].map((item) => (
           <Link
             key={item}
-            href={item === 'About' ? '#about' : `/${item.toLowerCase().replace(' ', '-')}`}
+            href={item === 'About' ? '/about' : `/${item.toLowerCase().replace(' ', '-')}`}
             className="text-gray-800 hover:text-cream transition-colors duration-200"
           >
             {item}
@@ -59,7 +59,7 @@ export default function Navbar() {
         {['About', 'Leadership', 'Events', 'Dances', 'Tickets', 'Contact'].map((item) => (
           <Link
             key={item}
-            href={item === 'About' ? '#about' : `/${item.toLowerCase().replace(' ', '-')}`}
+            href={item === 'About' ? '/about' : `/${item.toLowerCase().replace(' ', '-')}`}
             className="text-gray-800 hover:text-cream transition-colors duration-200"
             onClick={() => setIsMenuOpen(false)} 
           >
