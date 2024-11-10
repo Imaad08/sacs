@@ -10,6 +10,7 @@ export default async function Page() {
   return (
     <div className="bg-cream min-h-screen flex flex-col">
       <main className="flex-grow container mx-auto px-5">
+        
         <h1 className="text-6xl font-bold text-center mt-16 mb-8">Events</h1>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
