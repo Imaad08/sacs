@@ -38,7 +38,7 @@ export default function Navbar() {
       </div>
 
       <nav className="hidden lg:flex lg:gap-6">
-        {['About', 'Events', 'Dances', 'Tickets', 'Contact'].map((item) => (
+        {['About', 'Leadership', 'Events', 'Dances', 'Tickets', 'Contact'].map((item) => (
           <Link
             key={item}
             href={item === 'About' ? '#about' : `/${item.toLowerCase().replace(' ', '-')}`}
@@ -56,7 +56,7 @@ export default function Navbar() {
           isMenuOpen && hasShadow ? 'shadow-md' : ''
         }`}
       >
-        {['About', 'Events', 'Dances', 'Tickets', 'Contact'].map((item) => (
+        {['About', 'Leadership', 'Events', 'Dances', 'Tickets', 'Contact'].map((item) => (
           <Link
             key={item}
             href={item === 'About' ? '#about' : `/${item.toLowerCase().replace(' ', '-')}`}

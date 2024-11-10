@@ -76,7 +76,7 @@ export default function SacsHomepageComponent() {
             Interested in being part of our vibrant community? Fill out our interest form and discover exciting opportunities!
           </p>
           <Button asChild size="lg" className="bg-gold hover:bg-gold/80 text-gray-800 mb-10 rounded-full">
-            <Link href="https://docs.google.com/forms/d/1I3EzWeegL1_fVhpqn8iYu2EJGUbi3tN7e02o8jWYSDg/viewform?edit_requested=true">Interest Form</Link>
+          <Link href="https://docs.google.com/forms/d/1I3EzWeegL1_fVhpqn8iYu2EJGUbi3tN7e02o8jWYSDg/viewform?edit_requested=true" target="_blank" rel="noopener noreferrer">Interest Form</Link>
           </Button>
         </section>
       </main>

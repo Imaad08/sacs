@@ -62,5 +62,5 @@ export default {
     		}
 		}
 	},
-	plugins: [tailwindcssAnimate, typography],
+	plugins: [tailwindcssAnimate, typography, require("daisyui"),],
 } satisfies Config;

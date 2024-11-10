@@ -1,169 +1,157 @@
-"use client"
-import Link from 'next/link'
-import { Button } from "@/components/ui/button"
-import { useState } from 'react';
-import { FormEvent } from 'react';
+"use client";
+import React from 'react';
 
-export default function Contact() {
-  const [resultMessage, setResultMessage] = useState<string | null>(null);
+const presidents = [
+  {
+    id: 1,
+    name: 'Tanay Shah',
+    role: 'President',
+    image: 'https://i.ibb.co/thXrYtb/360-F-248426448-NVKLyw-Wq-Ar-G2-ADUx-Dq6-Qprt-Izs-F82d-MF.jpg',
+    description:
+      'Tanay Shah is an 11th grader at Del Norte High School, San Diego. While other 4-year olds wanted to be Superman or Spiderman, Tanay wanted to be "All The Mans"! This thirst for trying and learning new things has led Tanay to tinker with various interests ranging from robotics to hip-hop dance to piano (that last one didn’t quite pan out :-) ). He has won several State and Regional awards with First Lego League and VexIQ robotics competitions and has been invited to be a keynote speaker for Altitude Learning and the D39X Educational Summit. He balances his interests with wanting to help his friends and his school get to the next level, especially through the current pandemic. And so, being a Student Ambassador with Thrively is a natural fit for Tanay. This combines his passions for technology, new-age learning, and advocating for student agency into one neat package. In the years to come, Tanay hopes to be a roboticist or an entrepreneur. In his spare time, Tanay likes to play football, golf, and video games! His favorite tag line - Carpe Diem!!',
+  },
+  {
+    id: 2,
+    name: 'Srijan Atti',
+    role: 'President',
+    image: 'https://i.ibb.co/thXrYtb/360-F-248426448-NVKLyw-Wq-Ar-G2-ADUx-Dq6-Qprt-Izs-F82d-MF.jpg',
+    description:
+      'Srijan Atti is an 11th grader at Del Norte High School with a love for all things STEM. His passion for the field originated early on after watching the Iron Man movies; seeing Tony Stark make the Mark I suit with his bare hands inspired Srijan and opened his eyes to the possibilities that STEM opens. His passions grew as he interacted with computer science, robotics, and more sciences. His passions have culminated in numerous awards in cyber security competitions including National Champion of the CyberPatriot competition, two time SoCal Cyber Cup winner, and Space Grand Challenge winner. He hopes to spread his passion for the field and inspire kids in the same way Tony Stark inspired him.',
+  },
+  {
+    id: 3,
+    name: 'Imaad Muzaffer',
+    role: 'President',
+    image: 'https://i.ibb.co/thXrYtb/360-F-248426448-NVKLyw-Wq-Ar-G2-ADUx-Dq6-Qprt-Izs-F82d-MF.jpg',
+    description:
+      'Imaad Muzaffer is a dedicated computer scientist currently an 11th grader attending Del Norte High School in San Diego, CA. With a strong academic record and a passion for computer science, Imaad has demonstrated leadership as the President & Founder of the Del Norte High School Technology Student Association and President of Coding4Kidz. His skills encompass various programming languages and technologies, including Python, Unity Game Development, and web development with React, Typescript, and Tailwind. Additionally, he has engaged in extracurricular activities such as robotics at his school and has a keen interest in Artificial Intelligence/Machine Learning.',
+  },
+];
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+const vicePresidents = [
+  {
+    id: 4,
+    name: 'Kiana Withee',
+    role: 'Vice President',
+    image: 'https://i.ibb.co/thXrYtb/360-F-248426448-NVKLyw-Wq-Ar-G2-ADUx-Dq6-Qprt-Izs-F82d-MF.jpg',
+    description:
+      'Kiana Withee is a junior at Del Norte High School with a wide range of interests and passions. Academically, she thrives in subjects like math and loves immersing herself in a good book. Outside the classroom, Kiana enjoys crocheting, where she channels her creativity, and stays active by playing volleyball, which fuels her competitive spirit and love for teamwork. A natural helper, Kiana finds great fulfillment in supporting others and contributing to her community. Her passion for problem-solving has also driven her to participate in robotics programs for five years. She’s been actively involved in both FIRST LEGO League (FLL) and FIRST Robotics Competition (FRC), where she has gained experience in engineering, programming, and teamwork. Whether she’s on the volleyball court, working on a robotics challenge, or helping someone in need, Kiana brings enthusiasm, kindness, and determination to everything she does.',
+  },
+  {
+    id: 5,
+    name: 'Sameeksha Vashishtha',
+    role: 'Vice President',
+    image: 'https://i.ibb.co/thXrYtb/360-F-248426448-NVKLyw-Wq-Ar-G2-ADUx-Dq6-Qprt-Izs-F82d-MF.jpg',
+    description:
+      'Sameeksha Vashishtha, Outreach Lead for a STEMpathy, began her journey in 8th grade when she learned coding and discovered its potential for innovation. Since then, she has been delved into FRC robotics (starting in 2022) and her aim is to pursue a PhD in computer science. With a passion for expanding STEM education, especially for underprivileged children, Sameeksha spearheaded a research project to provide opportunities for students to explore STEM fields. She believes education is key to fostering future leaders and innovators. As outreach lead, Sameeksha manages partnerships, plans events, and advocates for diversity, breaking barriers to inspire young minds in science and technology.',
+  },
+  {
+    id: 6,
+    name: 'Ananya Asudani',
+    role: 'Vice President',
+    image: '/assets/ananyapfp.jpeg',
+    description:
+      'Ananya Asudani is an 11th grader in Del Norte High School San Diego California. She enjoys all things STEM, her specialty being biology. Ever since she was a kid she enjoyed learning about genes, genetics, and cellular biology. This interest led to her writing a children’s book about genetics called “Jackets and Genes.” I enjoy doing research as well as reading up on new treatments and therapeutics that can potentially benefit a plethora of diseases and disorders in the future. It is my goal and aspiration to create equity and enable students to have opportunities to do research! In my free time I love painting, teaching, and listening to music!',
+  },
+];
 
-    const form = e.currentTarget;
-    const formData = new FormData(form);
+const Leadership = () => {
+  const openModal = (modalId: string) => {
+    const modal = document.getElementById(modalId) as HTMLDialogElement;
+    if (modal) {
+      modal.showModal();
+    }
+  };
 
-    const object: { [key: string]: string } = {};
-    formData.forEach((value, key) => {
-      object[key] = value.toString();
-    });
-
-    const json = JSON.stringify(object);
-
-    setResultMessage("Please wait...");
-
-    try {
-      const response = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: json,
-      });
-
-      const jsonResponse = await response.json();
-
-      if (response.status === 200) {
-        setResultMessage(jsonResponse.message);
-      } else {
-        console.log(response);
-        setResultMessage(jsonResponse.message);
-      }
-    } catch (error) {
-      console.log(error);
-      setResultMessage("Something went wrong!");
-    } finally {
-      form.reset();
-      setTimeout(() => {
-        setResultMessage(null);
-      }, 5000);
+  const closeModal = (modalId: string) => {
+    const modal = document.getElementById(modalId) as HTMLDialogElement;
+    if (modal) {
+      modal.close();
     }
   };
 
   return (
-    <div className="min-h-screen bg-cream text-gray-800">
-      <main className="space-y-20">
-        <section className="hero bg-cream py-20">
-          <div className="container mx-auto text-center">
-            <h1 className="text-5xl font-bold text-gray-800">Contact Us</h1>
+    <div className="bg-cream min-h-screen p-4">
+      {/* Hero Section with Title */}
+      <section className="hero bg-cream py-20">
+        <div className="container mx-auto text-center">
+          <h1 className="text-5xl font-bold text-gray-800">Leadership</h1>
+        </div>
+      </section>
+
+      {/* Presidents Cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {presidents.map((card) => (
+          <div key={card.id} className="card w-full sm:w-full md:w-full lg:w-full bg-gold/40 shadow-xl m-5">
+            <figure>
+              <img src={card.image} alt={card.name} />
+            </figure>
+            <div className="card-body">
+              <h2 className="card-title">{card.name}</h2>
+              <p>{card.role}</p>
+              <div className="card-actions justify-end">
+                <button
+                  className="btn bg-gold hover:bg-gold/80 text-white"
+                  onClick={() => openModal(`my_modal_${card.id}`)}
+                >
+                  View More
+                </button>
+              </div>
+              <dialog id={`my_modal_${card.id}`} className="modal">
+                <div className="modal-box bg-cream">
+                  <h3 className="font-bold text-lg">{card.name}</h3>
+                  <p className="py-4">{card.description}</p>
+                  <div className="modal-action">
+                    <form method="dialog">
+                      <button className="btn btn-primary" onClick={() => closeModal(`my_modal_${card.id}`)}>
+                        Close
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </dialog>
+            </div>
           </div>
-        </section>
+        ))}
+      </div>
 
-        <section id="information" className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-10 text-center text-gray-800">Our Information</h2>
-          <ul className="text-2xl italic text-center">
-            <li className="py-6">Location: San Diego, CA 92127</li>
-            <li className="py-6">Email: sacsexec@gmail.com</li>
-            <li className="py-6">Instagram: @sacs.2k25</li>
-          </ul>
-          <div className="flex justify-center mt-6">
-          <Button asChild size="lg" className="bg-gold hover:bg-gold/80 text-gray-800 mb-10 rounded-full">
-            <Link href="https://docs.google.com/forms/d/1I3EzWeegL1_fVhpqn8iYu2EJGUbi3tN7e02o8jWYSDg/viewform?edit_requested=true">Interest Form</Link>
-          </Button>
+      {/* Vice Presidents Cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-10">
+        {vicePresidents.map((card) => (
+          <div key={card.id} className="card w-full sm:w-full md:w-full lg:w-full bg-gold/40 shadow-xl m-5">
+            <figure>
+              <img src={card.image} alt={card.name} />
+            </figure>
+            <div className="card-body">
+              <h2 className="card-title">{card.name}</h2>
+              <p>{card.role}</p>
+              <div className="card-actions justify-end">
+                <button
+                  className="btn bg-gold hover:bg-gold/80 text-white"
+                  onClick={() => openModal(`my_modal_${card.id}`)}
+                >
+                  View More
+                </button>
+              </div>
+              <dialog id={`my_modal_${card.id}`} className="modal">
+                <div className="modal-box bg-cream">
+                  <h3 className="font-bold text-lg">{card.name}</h3>
+                  <p className="py-4">{card.description}</p>
+                  <div className="modal-action">
+                    <form method="dialog">
+                      <button className="btn btn-primary" onClick={() => closeModal(`my_modal_${card.id}`)}>
+                        Close
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </dialog>
+            </div>
           </div>
-        </section>
-
-        <section className="container mx-auto px-4 py-10">
-          <h2 className="text-3xl font-bold mb-10 text-center text-gray-800">Send Us a Message</h2>
-          <div className="max-w-lg mx-auto bg-cream p-5 rounded-md shadow-lg">
-            <form onSubmit={handleSubmit}>
-              <input
-                type="hidden"
-                name="apikey"
-                value="2b9f6e80-b4d7-4fca-b3fe-34d92de44ef9"
-              />
-              <input
-                type="hidden"
-                name="subject"
-                value="New Submission from Web3Forms"
-              />
-              <input
-                type="checkbox"
-                name="botcheck"
-                id="botcheck"
-                style={{ display: "none" }}
-              />
-
-              <div className="mb-6">
-                <label htmlFor="name" className="block mb-2 text-sm text-gray-600">
-                  Your Full Name
-                </label>
-                <input
-                  type="text"
-                  name="name"
-                  id="name"
-                  placeholder="John Doe"
-                  required
-                  className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none bg-cream focus:ring focus:ring-indigo-100 focus:border-indigo-300"
-                />
-              </div>
-
-              <div className="mb-6">
-                <label htmlFor="email" className="block mb-2 text-sm text-gray-600">
-                  Your Email Address
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  id="email"
-                  placeholder="you@company.com"
-                  required
-                  className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md bg-cream focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
-                />
-              </div>
-
-              <div className="mb-6">
-                <label htmlFor="phone" className="text-sm text-gray-600">
-                  Your Phone Number
-                </label>
-                <input
-                  type="text"
-                  name="phone"
-                  id="phone"
-                  placeholder="+1 (555) 1234-567"
-                  required
-                  className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md bg-cream focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
-                />
-              </div>
-
-              <div className="mb-6">
-                <label htmlFor="message" className="block mb-2 text-sm text-gray-600">
-                  Your Message
-                </label>
-                <textarea
-                  rows={5}
-                  name="message"
-                  id="message"
-                  placeholder="Your Message"
-                  className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md bg-cream focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
-                  required
-                ></textarea>
-              </div>
-
-              <div className="mb-6">
-                <Button asChild className="w-full px-3 py-4 text-white bg-gold rounded-md focus:outline-none hover:bg-gold/80">
-                  <button type="submit">Send Message</button>
-                </Button>
-              </div>
-
-              <p className="text-base text-center text-gray-400" id="result">
-                {resultMessage}
-              </p>
-            </form>
-          </div>
-        </section>
-      </main>
+        ))}
+      </div>
     </div>
   );
-}
+};
+
+export default Leadership;
