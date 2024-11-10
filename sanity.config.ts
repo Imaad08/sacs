@@ -32,9 +32,7 @@ export default defineConfig({
   dataset,
   schema: {
     types: [
-      // Singletons
       settings,
-      // Documents
       post,
       author,
     ],
@@ -44,7 +42,7 @@ export default defineConfig({
       resolve: {
         mainDocuments: defineDocuments([
           {
-            route: "/posts/:slug",
+            route: "/events/:slug",
             filter: `_type == "post" && slug.current == $slug`,
           },
         ]),
@@ -74,15 +72,9 @@ export default defineConfig({
       previewUrl: { previewMode: { enable: "/api/draft-mode/enable" } },
     }),
     structureTool({ structure: pageStructure([settings]) }),
-    // Configures the global "new document" button, and document actions, to suit the Settings document singleton
     singletonPlugin([settings.name]),
-    // Add an image asset source for Unsplash
     unsplashImageAsset(),
-    // Sets up AI Assist with preset prompts
-    // https://www.sanity.io/docs/ai-assist
     assistWithPresets(),
-    // Vision lets you query your content with GROQ in the studio
-    // https://www.sanity.io/docs/the-vision-plugin
     process.env.NODE_ENV === "development" &&
       visionTool({ defaultApiVersion: apiVersion }),
   ].filter(Boolean) as PluginOptions[],

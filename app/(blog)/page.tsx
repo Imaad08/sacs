@@ -1,111 +1,85 @@
-import Link from "next/link";
-import { Suspense } from "react";
+import Link from 'next/link'
+import Image from 'next/image'
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
-import Avatar from "./avatar";
-import CoverImage from "./cover-image";
-import DateComponent from "./date";
-import MoreStories from "./more-stories";
-import Onboarding from "./onboarding";
-import PortableText from "./portable-text";
-
-import type { HeroQueryResult } from "@/sanity.types";
-import * as demo from "@/sanity/lib/demo";
-import { sanityFetch } from "@/sanity/lib/fetch";
-import { heroQuery, settingsQuery } from "@/sanity/lib/queries";
-
-function Intro(props: { title: string | null | undefined; description: any }) {
-  const title = props.title || demo.title;
-  const description = props.description?.length
-    ? props.description
-    : demo.description;
+export default function SacsHomepageComponent() {
   return (
-    <section className="mt-16 mb-16 flex flex-col items-center lg:mb-12 lg:flex-row lg:justify-between">
-      <h1 className="text-balance text-6xl font-bold leading-tight tracking-tighter lg:pr-8 lg:text-8xl">
-        {title || demo.title}
-      </h1>
-      <h2 className="text-pretty mt-5 text-center text-lg lg:pl-8 lg:text-left">
-        <PortableText
-          className="prose-lg"
-          value={description?.length ? description : demo.description}
-        />
-      </h2>
-    </section>
-  );
-}
-
-function HeroPost({
-  title,
-  slug,
-  excerpt,
-  coverImage,
-  date,
-  author,
-}: Pick<
-  Exclude<HeroQueryResult, null>,
-  "title" | "coverImage" | "date" | "excerpt" | "author" | "slug"
->) {
-  return (
-    <article>
-      <Link className="group mb-8 block md:mb-16" href={`/posts/${slug}`}>
-        <CoverImage image={coverImage} priority />
-      </Link>
-      <div className="mb-20 md:mb-28 md:grid md:grid-cols-2 md:gap-x-16 lg:gap-x-8">
-        <div>
-          <h3 className="text-pretty mb-4 text-4xl leading-tight lg:text-6xl">
-            <Link href={`/posts/${slug}`} className="hover:underline">
-              {title}
-            </Link>
-          </h3>
-          <div className="mb-4 text-lg md:mb-0">
-            <DateComponent dateString={date} />
-          </div>
-        </div>
-        <div>
-          {excerpt && (
-            <p className="text-pretty mb-4 text-lg leading-relaxed">
-              {excerpt}
+    <div className="min-h-screen bg-cream text-gray-800">
+      <main className="space-y-20">
+        <section className="hero bg-gold/10 py-20">
+          <div className="container mx-auto text-center">
+            <h1 className="text-5xl font-bold mb-6 text-gray-800">South Asian Cultural Show</h1>
+            <p className="text-xl mb-10 max-w-2xl mx-auto text-gray-600">
+              Celebrating the rich diversity of South Asian culture through dance and performance
             </p>
-          )}
-          {author && <Avatar name={author.name} picture={author.picture} />}
-        </div>
-      </div>
-    </article>
-  );
-}
+            <Button asChild size="lg" className="bg-gold hover:bg-gold/80 text-gray-800 rounded-full">
+              <Link href="/tickets">Get Tickets</Link>
+            </Button>
+          </div>
+        </section>
 
-export default async function Page() {
-  const [settings, heroPost] = await Promise.all([
-    sanityFetch({
-      query: settingsQuery,
-    }),
-    sanityFetch({ query: heroQuery }),
-  ]);
+        <section id="about" className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold mb-10 text-center text-gray-800">About SACS</h2>
+          <div className="flex flex-col lg:flex-row items-center gap-12">
+            <div className="lg:w-1/2">
+              <Image 
+                src="/placeholder.svg" 
+                alt="SACS Performance" 
+                width={600} 
+                height={400} 
+                className="rounded-lg shadow-lg object-cover"
+              />
+            </div>
+            <div className="lg:w-1/2 space-y-6">
+              <p className="text-lg text-gray-600">
+                The South Asian Cultural Show (SACS) is a vibrant celebration of the diverse cultures and traditions of South Asia. Our organization brings together talented performers to showcase the beauty of South Asian dance, music, and art.
+              </p>
+              <p className="text-lg text-gray-600">
+                Founded in [year], SACS has grown into a platform that not only entertains but also educates and connects communities. Our annual show is a testament to the rich heritage and contemporary expressions of South Asian culture.
+              </p>
+              <Button variant="outline" asChild className="border-gold text-gray-800 hover:bg-gold hover:text-gray-800 rounded-full">
+                <Link href="/about">Learn more about our history and mission</Link>
+              </Button>
+            </div>
+          </div>
+        </section>
 
-  return (
-    <div className="container mx-auto px-5">
-      <Intro title={settings?.title} description={settings?.description} />
-      {heroPost ? (
-        <HeroPost
-          title={heroPost.title}
-          slug={heroPost.slug}
-          coverImage={heroPost.coverImage}
-          excerpt={heroPost.excerpt}
-          date={heroPost.date}
-          author={heroPost.author}
-        />
-      ) : (
-        <Onboarding />
-      )}
-      {heroPost?._id && (
-        <aside>
-          <h2 className="mb-8 text-6xl font-bold leading-tight tracking-tighter md:text-7xl">
-            More Stories
-          </h2>
-          <Suspense>
-            <MoreStories skip={heroPost._id} limit={100} />
-          </Suspense>
-        </aside>
-      )}
+        <section className="bg-gold/10 py-20">
+          <div className="container mx-auto px-4">
+            <h2 className="text-3xl font-bold mb-10 text-center text-gray-800">Upcoming Events</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {['Mixer Night', 'Dance Workshop', 'Cultural Showcase'].map((event) => (
+                <Card key={event} className="bg-cream border-gold">
+                  <CardHeader>
+                    <CardTitle className="text-gray-800">{event}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="mb-4 text-gray-600">
+                      {event === 'Mixer Night' && 'Join us for a night of music, dance, and networking!'}
+                      {event === 'Dance Workshop' && 'Learn the basics of Bhangra and Bollywood dance styles.'}
+                      {event === 'Cultural Showcase' && 'Experience the diversity of South Asian performances.'}
+                    </p>
+                    <Button variant="link" asChild className="text-gold hover:text-gold/80">
+                      <Link href="/events">Learn More</Link>
+                    </Button>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="container mx-auto px-4 text-center">
+          <h2 className="text-3xl font-bold mb-6 text-gray-800">Join SACS</h2>
+          <p className="text-lg mb-10 max-w-2xl mx-auto text-gray-600">
+            Interested in being part of our vibrant community? Fill out our interest form and discover exciting opportunities!
+          </p>
+          <Button asChild size="lg" className="bg-gold hover:bg-gold/80 text-gray-800 mb-10 rounded-full">
+            <Link href="/interest-form">Interest Form</Link>
+          </Button>
+        </section>
+      </main>
     </div>
-  );
+  )
 }
