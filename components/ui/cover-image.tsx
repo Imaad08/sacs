@@ -15,6 +15,7 @@ export default function CoverImage(props: CoverImageProps) {
       height={400} 
       alt={source?.alt || ""}
       src={urlForImage(source)?.height(400).width(800).url() as string}
+      style={{ borderRadius: '1rem' }} 
       sizes="100vw"
       priority={priority}
     />
