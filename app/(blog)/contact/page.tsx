@@ -69,7 +69,7 @@ export default function Contact() {
           </ul>
           <div className="flex justify-center mt-6">
           <Button asChild size="lg" className="bg-gold hover:bg-gold/80 text-gray-800 mb-10 rounded-full">
-            <Link href="/interest-form">Interest Form</Link>
+            <Link href="https://docs.google.com/forms/d/1I3EzWeegL1_fVhpqn8iYu2EJGUbi3tN7e02o8jWYSDg/viewform?edit_requested=true">Interest Form</Link>
           </Button>
           </div>
         </section>
