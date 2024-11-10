@@ -72,85 +72,96 @@ const Leadership = () => {
 
   return (
     <div className="bg-cream min-h-screen p-4">
-      <section className="hero bg-cream py-20">
-        <div className="container mx-auto text-center">
-          <h1 className="text-5xl font-bold text-gray-800">Leadership</h1>
-        </div>
-      </section>
-
-      <h1 className="text-3xl font-bold text-gray-800 text-center">Presidents</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {presidents.map((card) => (
-          <div key={card.id} className="card w-full sm:w-full md:w-full lg:w-full bg-gold/40 shadow-xl m-5">
-            <figure>
-              <img src={card.image} alt={card.name} />
-            </figure>
-            <div className="card-body">
-              <h2 className="card-title">{card.name}</h2>
-              <p>{card.role}</p>
-              <div className="card-actions justify-end">
-                <button
-                  className="btn bg-gold hover:bg-gold/80 text-white"
-                  onClick={() => openModal(`my_modal_${card.id}`)}
-                >
-                  View More
-                </button>
-              </div>
-              <dialog id={`my_modal_${card.id}`} className="modal">
-                <div className="modal-box bg-cream">
-                  <h3 className="font-bold text-lg">{card.name}</h3>
-                  <p className="py-4">{card.description}</p>
-                  <div className="modal-action">
-                    <form method="dialog">
-                      <button className="btn btn-primary bg-gold hover:bg-gold/80" onClick={() => closeModal(`my_modal_${card.id}`)}>
-                        Close
-                      </button>
-                    </form>
-                  </div>
-                </div>
-              </dialog>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      <h1 className="text-3xl font-bold text-gray-800 text-center mt-10">Vice Presidents</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {vicePresidents.map((card) => (
-          <div key={card.id} className="card w-full sm:w-full md:w-full lg:w-full bg-gold/40 shadow-xl m-5">
-            <figure>
-              <img src={card.image} alt={card.name} />
-            </figure>
-            <div className="card-body">
-              <h2 className="card-title">{card.name}</h2>
-              <p>{card.role}</p>
-              <div className="card-actions justify-end">
-                <button
-                  className="btn bg-gold hover:bg-gold/80 text-white"
-                  onClick={() => openModal(`my_modal_${card.id}`)}
-                >
-                  View More
-                </button>
-              </div>
-              <dialog id={`my_modal_${card.id}`} className="modal">
-                <div className="modal-box bg-cream">
-                  <h3 className="font-bold text-lg">{card.name}</h3>
-                  <p className="py-4">{card.description}</p>
-                  <div className="modal-action">
-                    <form method="dialog">
-                      <button className="btn btn-primary bg-gold hover:bg-gold/80" onClick={() => closeModal(`my_modal_${card.id}`)}>
-                        Close
-                      </button>
-                    </form>
-                  </div>
-                </div>
-              </dialog>
-            </div>
-          </div>
-        ))}
-      </div>
+  <section className="hero bg-cream py-20">
+    <div className="container mx-auto text-center px-4">
+      <h1 className="text-5xl font-bold text-gray-800">Leadership</h1>
     </div>
-  );
-};
+  </section>
 
-export default Leadership;
+  <h1 className="text-3xl font-bold text-gray-800 text-center">Presidents</h1>
+  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 mr-4 lg:grid-cols-3 gap-4">
+    {presidents.map((card) => (
+      <div
+        key={card.id}
+        className="card w-full sm:w-full md:w-full lg:w-full bg-gold/40 shadow-xl m-4 max-w-full"
+      >
+        <figure>
+          <img src={card.image} alt={card.name} />
+        </figure>
+        <div className="card-body">
+          <h2 className="card-title">{card.name}</h2>
+          <p>{card.role}</p>
+          <div className="card-actions justify-end">
+            <button
+              className="btn bg-gold hover:bg-gold/80 text-white"
+              onClick={() => openModal(`my_modal_${card.id}`)}
+            >
+              View More
+            </button>
+          </div>
+          <dialog id={`my_modal_${card.id}`} className="modal">
+            <div className="modal-box bg-cream">
+              <h3 className="font-bold text-lg">{card.name}</h3>
+              <p className="py-4">{card.description}</p>
+              <div className="modal-action">
+                <form method="dialog">
+                  <button
+                    className="btn btn-primary bg-gold hover:bg-gold/80"
+                    onClick={() => closeModal(`my_modal_${card.id}`)}
+                  >
+                    Close
+                  </button>
+                </form>
+              </div>
+            </div>
+          </dialog>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <h1 className="text-3xl font-bold text-gray-800 text-center mt-10">Vice Presidents</h1>
+  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 mr-4 lg:grid-cols-3 gap-4">
+    {vicePresidents.map((card) => (
+      <div
+        key={card.id}
+        className="card w-full sm:w-full md:w-full lg:w-full bg-gold/40 shadow-xl m-4 max-w-full"
+      >
+        <figure>
+          <img src={card.image} alt={card.name} />
+        </figure>
+        <div className="card-body">
+          <h2 className="card-title">{card.name}</h2>
+          <p>{card.role}</p>
+          <div className="card-actions justify-end">
+            <button
+              className="btn bg-gold hover:bg-gold/80 text-white"
+              onClick={() => openModal(`my_modal_${card.id}`)}
+            >
+              View More
+            </button>
+          </div>
+          <dialog id={`my_modal_${card.id}`} className="modal">
+            <div className="modal-box bg-cream">
+              <h3 className="font-bold text-lg">{card.name}</h3>
+              <p className="py-4">{card.description}</p>
+              <div className="modal-action">
+                <form method="dialog">
+                  <button
+                    className="btn btn-primary bg-gold hover:bg-gold/80"
+                    onClick={() => closeModal(`my_modal_${card.id}`)}
+                  >
+                    Close
+                  </button>
+                </form>
+              </div>
+            </div>
+          </dialog>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+    );
+    };
+export default Leadership
