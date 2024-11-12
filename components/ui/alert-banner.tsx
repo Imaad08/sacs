@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useSyncExternalStore, useTransition } from "react";
 
-import { disableDraftMode } from "../../app/(blog)/actions";
+import { disableDraftMode } from "../../app/(root)/actions";
 
 const emptySubscribe = () => () => {};
 
