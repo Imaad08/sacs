@@ -25,8 +25,8 @@ export async function generateMetadata(): Promise<Metadata> {
     query: settingsQuery,
     stega: false,
   });
-  const title = "South Asian Cultural Show";
-  const description = "South Asian Cultural Show(SACS) is a student-run organization in Poway that aims to promote South Asian culture through a variety of events and performances.";
+  const title = "South Asian Culture Show";
+  const description = "South Asian Culture Show(SACS) is a student-run organization in Poway that aims to promote South Asian culture through a variety of events and performances.";
 
   const ogImage = resolveOpenGraphImage(settings?.ogImage);
   let metadataBase: URL | undefined = undefined;

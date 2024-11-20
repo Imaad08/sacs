@@ -23,7 +23,7 @@ export default function Receipt() {
           const data = await res.json();
           setSession(data.session);
           setCharge(data.charge);
-          setLineItems(data.line_items); // Now contains product details
+          setLineItems(data.line_items); 
         } catch (err: any) {
           setError(err.message);
         } finally {
@@ -36,7 +36,6 @@ export default function Receipt() {
   }, [sessionId]);
 
   useEffect(() => {
-    // Only show toast once when charge is successfully fetched
     if (charge) {
       if (charge.status === 'succeeded') {
         toast.success('Payment successful. Show up to the event and give your name', {
