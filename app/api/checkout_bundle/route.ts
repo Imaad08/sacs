@@ -8,7 +8,7 @@ export async function POST(req: NextRequest) {
       line_items: [
         {
           // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
-          price: 'price_1RM0KXFzdGNcLcLj0fKArFkz',
+          price: 'price_1RM1GZFzdGNcLcLjD8Ik60Vl',
           quantity: 1,
         },
       ],
