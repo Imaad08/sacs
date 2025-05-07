@@ -41,22 +41,34 @@ export default function PreviewPage() {
       <h2>Get your tickets now to experience our exciting events!</h2>
       <p>Each ticket grants you access to a unique event filled with activities, entertainment, and more.</p>
       
-      <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', marginTop: '20px' }}>
+      <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', marginTop: '20px', flexWrap: 'wrap' }}>
         
         <div className="event-box bg-cream shadow-lg">
-          <h3>Event 1 - Date 1</h3>
+          <h3>May 24th Dance</h3>
+          <p>6:00 PM - 9:00 PM</p>
           <form action="/api/checkout_sessions" method="POST">
             <button type="submit" role="link" className="ticket-button">
-              Buy Ticket
+              Buy Single Ticket
+            </button>
+          </form>
+          <form action="/api/checkout_sessions_bundle" method="POST" style={{ marginTop: '10px' }}>
+            <button type="submit" role="link" className="ticket-button bundle">
+              Buy Bundle (4 Tickets) - $40
             </button>
           </form>
         </div>
         
         <div className="event-box bg-cream shadow-lg">
-          <h3>Event 2 - Date 2</h3>
+          <h3>May 25th Dance</h3>
+          <p>3:00 PM - 6:00 PM</p>
           <form action="/api/checkout" method="POST">
             <button type="submit" role="link" className="ticket-button">
-              Buy Ticket
+              Buy Single Ticket
+            </button>
+          </form>
+          <form action="/api/checkout_bundle" method="POST" style={{ marginTop: '10px' }}>
+            <button type="submit" role="link" className="ticket-button bundle">
+              Buy Bundle (4 Tickets) - $40
             </button>
           </form>
         </div>
@@ -86,6 +98,11 @@ export default function PreviewPage() {
           cursor: pointer;
           transition: all 0.2s ease;
           box-shadow: 0px 4px 5.5px rgba(0, 0, 0, 0.07);
+        }
+
+        .ticket-button.bundle {
+          background-color: #8B4513;
+          color: white;
         }
 
         .ticket-button:hover {
