@@ -10,6 +10,11 @@ export async function POST(req: NextRequest) {
             // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
             price: 'price_1QJU6LFzdGNcLcLjaNH9nHUs',
             quantity: 1,
+            adjustable_quantity: {
+              enabled: true,
+              maximum: 100,
+              minimum: 0,
+            },
           },
         ],
         custom_fields: [
