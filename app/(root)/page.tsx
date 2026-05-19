@@ -5,7 +5,7 @@ import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { ArrowRight, Users, Star, Calendar } from 'lucide-react'
 
-const TICKETS_URL = '#'
+const TICKETS_URL = 'https://gofan.co/app/school/CA71942'
 
 const stats = [
   { label: 'Years Running', value: '10+', icon: Calendar },

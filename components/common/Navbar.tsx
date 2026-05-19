@@ -14,7 +14,7 @@ const navLinks = [
   { label: 'Contact', href: '/contact' },
 ];
 
-const TICKETS_URL = '#';
+const TICKETS_URL = 'https://gofan.co/app/school/CA71942';
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
